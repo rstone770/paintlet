@@ -1,0 +1,22 @@
+{
+  "name": "paintlet",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@linaria/core": "^6.2.0",
+    "preact": "^10.26.4"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.1",
+    "@types/node": "^22.7.5",
+    "@wyw-in-js/vite": "^0.5.5",
+    "vite": "^6.1.1",
+    "vitest": "^3.0.6"
+  }
+}

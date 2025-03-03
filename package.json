@@ -1,0 +1,27 @@
+{
+  "name": "@rstone/paintlet",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "app",
+    "libs/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "format:fix": "prettier --write .",
+    "syncpack:fix": "syncpack fix-mismatches",
+    "prepare": "husky"
+  },
+  "packageManager": "yarn@4.6.0",
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "^3.5.3",
+    "syncpack": "^13.0.2",
+    "turbo": "^2.4.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,json,js,html}": "prettier --write"
+  }
+}
