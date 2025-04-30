@@ -1,7 +1,8 @@
 import { render } from "preact";
+import { GridCanvas } from "./GridCanvas/GridCanvas";
 
 const App = () => {
-  return <div>Hello World</div>;
+  return <GridCanvas></GridCanvas>;
 };
 
 const root = document.getElementById("app");
