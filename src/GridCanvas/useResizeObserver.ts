@@ -1,45 +1,29 @@
-import { useEffect, useRef } from "preact/hooks";
-
 export function useResizeObserver(
-  target: HTMLElement | null,
+  target: HTMLElement,
   onResize: (entry: ResizeObserverEntry) => void,
   delay = 100
 ) {
-  const $onResize = useRef(onResize);
+  let timeout: number | null = null;
 
-  useEffect(() => {
-    $onResize.current = onResize;
-  }, [onResize]);
+  const observer = new ResizeObserver((entries) => {
+    if (entries.length === 0) return;
 
-  useEffect(() => {
-    if (target == null) {
-      return;
+    if (timeout != null) {
+      clearTimeout(timeout);
     }
 
-    let timeout: number | null = null;
+    timeout = setTimeout(() => {
+      onResize(entries[0]);
+    }, delay);
+  });
 
-    const observer = new ResizeObserver((entries) => {
-      if (entries.length === 0) {
-        return;
-      }
+  observer.observe(target);
 
-      if (timeout != null) {
-        clearTimeout(timeout);
-      }
+  return () => {
+    observer.disconnect();
 
-      timeout = window.setTimeout(() => {
-        $onResize.current(entries[0]);
-      }, delay);
-    });
-
-    observer.observe(target);
-
-    return () => {
-      observer.disconnect();
-
-      if (timeout != null) {
-        clearTimeout(timeout);
-      }
-    };
-  }, [target, delay]);
+    if (timeout != null) {
+      clearTimeout(timeout);
+    }
+  };
 }
